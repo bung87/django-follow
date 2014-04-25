@@ -8,16 +8,17 @@ django-follow enables your users to follow any model in your Django application.
 [django-activity-stream](https://github.com/justquick/django-activity-stream)
 
 # follow related settings
-ACTSTREAM_SETTINGS = {
-    'MODELS': ('auth.user', 'auth.group', 'site.yourmodel', 'comments.comment'),
-    # 'MANAGER': 'myapp.streams.MyActionManager',
-    'FETCH_RELATIONS': True,
-    'USE_PREFETCH': True,
-    'USE_JSONFIELD': True,
-    'GFK_FETCH_DEPTH': 1,
-}
 
-FOLLOW_VERB='followed'
+	ACTSTREAM_SETTINGS = {
+	    'MODELS': ('auth.user', 'auth.group', 'site.yourmodel', 'comments.comment'),
+	    # 'MANAGER': 'myapp.streams.MyActionManager',
+	    'FETCH_RELATIONS': True,
+	    'USE_PREFETCH': True,
+	    'USE_JSONFIELD': True,
+	    'GFK_FETCH_DEPTH': 1,
+	}
+
+	FOLLOW_VERB='followed'
 
 ## Installation:
 
