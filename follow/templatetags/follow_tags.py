@@ -6,6 +6,7 @@ from follow.models import Follow
 from follow import utils
 import re
 from follow.views import toggle
+from django.middleware.csrf import get_token
 register = template.Library()
 
 @register.tag
@@ -82,7 +83,8 @@ class FollowFormNode(template.Node):
         self.obj = template.Variable(obj)
         self.template = tpl[1:-1] if tpl else 'follow/form.html'
     def render(self, context):
-        ctx = {'object': self.obj.resolve(context),'request':template.Variable("request").resolve(context)}
+        request = template.Variable("request").resolve(context)
+        ctx = {'object': self.obj.resolve(context),'request':request,'csrf_token':get_token(request)}
         return template.loader.render_to_string(self.template, ctx)
 
 class FollowingList(template.Node):
