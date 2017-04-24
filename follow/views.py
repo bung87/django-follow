@@ -120,4 +120,5 @@ def get_vendor_following_subset(request, content_type_id, object_id, sIndex, lIn
     else:
         return render_to_response("follow/render_vendor_following.html", {
             "vendors": vendors
-        }, context_instance=RequestContext(request))        
+        }, context_instance=RequestContext(request))  
+ 
