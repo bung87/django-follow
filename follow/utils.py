@@ -5,7 +5,7 @@ from .registry import registry, model_map
 from actstream import action, actions
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-
+from . import views
 
 def get_followers_for_object(instance):
     """
@@ -128,13 +128,13 @@ def toggle(user, obj):
 
 
 def follow_link(object):
-    return reverse('follow.views.toggle', args=[object._meta.app_label, object._meta.object_name.lower(), object.pk])
+    return reverse(views.toggle, args=[object._meta.app_label, object._meta.object_name.lower(), object.pk])
 
 def unfollow_link(object):
-    return reverse('follow.views.toggle', args=[object._meta.app_label, object._meta.object_name.lower(), object.pk])
+    return reverse(views.toggle, args=[object._meta.app_label, object._meta.object_name.lower(), object.pk])
 
 def toggle_link(object):
-    return reverse('follow.views.toggle', args=[object._meta.app_label, object._meta.object_name.lower(), object.pk])
+    return reverse(views.toggle, args=[object._meta.app_label, object._meta.object_name.lower(), object.pk])
 
 def follow_url(user, obj):
     """ Returns the right follow/unfollow url """

@@ -81,7 +81,7 @@ class FollowFormNode(template.Node):
         self.obj = template.Variable(obj)
         self.template = tpl[1:-1] if tpl else 'follow/form.html'
     def render(self, context):
-        ctx = {'object': self.obj.resolve(context)}
+        ctx = {'object': self.obj.resolve(context),'request':template.Variable("request").resolve(context)}
         return template.loader.render_to_string(self.template, ctx)
 
 class FollowingList(template.Node):
