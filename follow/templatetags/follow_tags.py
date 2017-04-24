@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from follow.models import Follow
 from follow import utils
 import re
-
+from follow.views import toggle
 register = template.Library()
 
 @register.tag
@@ -38,7 +38,8 @@ class FollowLinkNode(template.Node):
         else:
             user = template.Variable(self.user).resolve(context)
         
-        return utils.follow_url(user, obj)
+        return reverse(toggle, args=[obj._meta.app_label, obj._meta.object_name.lower(), obj.pk])
+
         
 
 @register.filter
