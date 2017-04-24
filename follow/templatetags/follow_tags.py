@@ -30,10 +30,10 @@ class FollowLinkNode(template.Node):
         
     def render(self, context):
         obj = self.obj.resolve(context)
-        
+        request = template.Variable("request").resolve(context)
         if not self.user:
             try:
-                user = context['request'].user
+                user = request.user
             except KeyError:
                 raise template.TemplateSyntaxError('There is no request object in the template context.')
         else:
